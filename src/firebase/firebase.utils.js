@@ -13,20 +13,20 @@ const config = {
   };
 
 export const createUserProfileDocument = async (userAuth,additionalData) => {
-    // console.log("userauth",userAuth);
     if(!userAuth) return null;
     
+    //firestore.doc it takes a collection path and id coloumn
     const userRef = firestore.doc(`users/${userAuth.uid}`);
-    // console.log("userRef",userRef);
+    
+    //get method is used to retrive data of uid
     const snapShot = await userRef.get();
-    // console.log("snapShot",snapShot);
-
+    // console.log("SNAPSHOT", snapShot)
     if(!snapShot.exists){
         const {displayName,email } = userAuth;
         const createdAt = new Date();
 
         try{
-            await userRef.set({
+            await userRef.set({   //set method is used for signup with user
                 displayName,
                 email,
                 createdAt,
