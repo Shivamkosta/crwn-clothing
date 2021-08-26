@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+// import { createStore } from "redux";
 import { createSelector } from "reselect";
 
 const selectUser = state => state.user;
@@ -6,5 +6,5 @@ const selectUser = state => state.user;
 
 export const selectCurrentUser = createSelector(
     [selectUser],
-    (user,cart) => user.currentUser
+    (user) => user.currentUser
 )
