@@ -15,6 +15,8 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.css";
 import CheckOutPage from "./pages/checkout/checkout.component";
+import CategoryPage from "./pages/category/category.component";
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
@@ -44,14 +46,13 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("setCurrentUser", setCurrentUser);
     return (
       <div>
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckOutPage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route  path="/checkout" component={CheckOutPage} />
 
           <Route
             exact
