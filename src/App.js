@@ -15,7 +15,6 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.css";
 import CheckOutPage from "./pages/checkout/checkout.component";
-import CategoryPage from "./pages/category/category.component";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
