@@ -11,7 +11,13 @@ import { setCurrentUser } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 
 import { selectCurrentUser } from "./redux/user/user.selector";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+  // addCollectionAddDocuments,
+} from "./firebase/firebase.utils";
+
+// import { selectCollectionsForPreview } from "./redux/shop/shop.selector";
 
 import "./App.css";
 import CheckOutPage from "./pages/checkout/checkout.component";
@@ -27,7 +33,6 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
-          // console.log("snapshot",snapShot.data());
           setCurrentUser({
             id: snapShot.id,
             ...snapShot.data(),
@@ -35,8 +40,10 @@ class App extends React.Component {
         });
       }
       setCurrentUser(userAuth);
-      // createUserProfileDocument(user);
-      console.log("setState", this.setState({ currentUser: userAuth }));
+      // addCollectionAddDocuments(
+      //   "collection",
+      //   collectionsArray.map(({ title, items }) => ({ title, items }))
+      // );
     });
   }
 
@@ -51,7 +58,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route  path="/checkout" component={CheckOutPage} />
+          <Route path="/checkout" component={CheckOutPage} />
 
           <Route
             exact
@@ -76,6 +83,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  // collectionsArray: selectCollectionsForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({
